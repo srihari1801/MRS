@@ -13,9 +13,9 @@ movie_recommendation <- function(input,input2,input3) {
   row_num2 <- which(movies2[,2] == input2)
   row_num3 <- which(movies2[,2] == input3)
   userSelect <- matrix(NA,10325)
-  userSelect[row_num] <- 5 #hard code first selection to rating 5
-  userSelect[row_num2] <- 4 #hard code second selection to rating 4
-  userSelect[row_num3] <- 3 #hard code third selection to rating 3
+  userSelect[row_num] <- 5 
+  userSelect[row_num2] <- 4 
+  userSelect[row_num3] <- 3 
   userSelect <- t(userSelect)
   
   ratingmat <- dcast(ratings, userId~movieId, value.var = "rating", na.rm=FALSE)
@@ -24,10 +24,9 @@ movie_recommendation <- function(input,input2,input3) {
   ratingmat2 <- rbind(userSelect,ratingmat)
   ratingmat2 <- as.matrix(ratingmat2)
   
-  #Convert rating matrix into a sparse matrix
+
   ratingmat2 <- as(ratingmat2, "realRatingMatrix")
   
-  #Create Recommender Model. "UBCF" stands for user-based collaborative filtering
   recommender_model <- Recommender(ratingmat2, method = "UBCF",param=list(method="Cosine",nn=30))
   recom <- predict(recommender_model, ratingmat2[1], n=10)
   recom_list <- as(recom, "list")
