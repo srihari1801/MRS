@@ -1,4 +1,4 @@
-#ui.R
+
 library(shiny)
 
 genre_list <- c("Action", "Adventure", "Animation", "Children", 
@@ -35,14 +35,8 @@ shinyUI(fluidPage(
            tableOutput("table")
            #verbatimTextOutput("dynamic_value")
     )
-  ),
+  )
   
-  fluidRow(
-    column(12,
-           helpText("For a detailed description of this project please visit", 
-                    a("the link", href="http://rpubs.com/jeknov/movieRec", target="_blank")),
-           helpText("For a code, press", a("here", href = "https://github.com/jeknov/movieRec", target="_blank"))
-
-    )
+ 
   )
 ))
