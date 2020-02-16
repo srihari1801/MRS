@@ -1,4 +1,4 @@
-#server.R
+
 library(shiny)
 library(proxy)
 library(recommenderlab)
@@ -10,8 +10,7 @@ ratings <- read.csv("ratings.csv", header = TRUE)
 search <- search[-which((search$movieId %in% ratings$movieId) == FALSE),]
 
 formatInput <- function(v,a,d){
-  ## This function formats the user's input of Valence-Arousal-Dominance
-  ## and outputs them as a vector
+ 
   
   c(v,a,d)
 }
